@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método | Meus Cursos</title>
+    
+    <!-- Mesmas fontes da index.html -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Mesmo Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS do courses -->
+    <link rel="stylesheet" href="courses.css">
+    
+    <!-- Mesmo favicon -->
+    <link rel="icon" href="https://i.ibb.co/jryH3q8/Min-Branca.png">
+</head>
+<body>
+    <!-- Header IDÊNTICO ao index.html -->
+    <header class="header" id="header">
+        <div class="container header-content">
+            <a href="/index.html" class="logo">
+                <img src="https://i.ibb.co/jryH3q8/Min-Branca.png" class="logoimg">
+                <div class="logo-text">
+                    <span class="logo-name">Método</span>
+                    <span class="logo-subtitle">Pré-Vestibular</span>
+                </div>
+            </a>
+            <nav class="nav-desktop">
+                <a href="/dashboard.html" >Dashboard</a>
+                <a href="/courses.html" class="active">Cursos</a>
+                <a href="/question.html">Questões</a>
+                <a href="/ranking.html">Ranking</a>
+                <a href="/profile.html">
+                    <div id="userDiv">
+                        <img id="userAvatar"></img>
+                        <p id="userName"></p>
+                    </div>
+                </a>
+            </nav>
+            <a href="" class="btn btn-accent" id="logoutBtn">Sair</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <nav class="nav-mobile" id="navMobile">
+            <a href="/dashboard.html" >Dashboard</a>
+            <a href="/courses.html" class="active">Cursos</a>
+            <a href="/question.html">Questões</a>
+            <a href="/ranking.html">Ranking</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section com propaganda -->
+    <section class="courses-hero">
+        <div class="container">
+            <div class="courses-hero-content">
+                <div class="courses-hero-info">
+                    <span class="courses-badge">Meus Cursos</span>
+                    <h1 class="courses-title">Sua <span class="text-accent">jornada</span> de aprendizado</h1>
+                    <p class="courses-description">
+                        Acesse todos os cursos que você adquiriu e continue sua preparação 
+                        rumo à aprovação nos vestibulares regionais.
+                    </p>
+                    
+                </div>
+                
+                <!-- Espaço para propaganda/Imagem -->
+                <div class="courses-promo">
+                    <div class="promo-image">
+                        <img src="https://i.ibb.co/C5MqSpsJ/profes.png" alt="Alunos do Método">
+                        <div class="promo-overlay">
+                            <h3>+2.500 Aprovações</h3>
+                            <p>Junte-se aos aprovados do Método</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="courses-main">
+        <div class="container">
+            <!-- Seção de Cursos Ativos -->
+            <section class="active-courses-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-graduation-cap"></i> Meus Cursos Ativos</h2>
+                    <p class="section-description">Continue de onde parou ou explore novos conteúdos</p>
+                </div>
+                
+                <div class="courses-grid" id="coursesGrid">
+                    <!-- Cursos serão carregados via JavaScript -->
+                </div>
+                
+                <div class="empty-state" id="noCourses" style="display: none;">
+                    <div class="empty-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Nenhum curso adquirido</h3>
+                    <p>Você ainda não tem cursos ativos em sua conta.</p>
+                    <a href="/pricing.html" class="btn btn-accent">
+                        <i class="fas fa-rocket"></i>
+                        <span>Começar Agora</span>
+                    </a>
+                </div>
+            </section>
+            
+            <!-- Seção de Progresso Geral -->
+            <section class="progress-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-line"></i> Seu Progresso Geral</h2>
+                    <p class="section-description">Acompanhe sua evolução em cada curso</p>
+                </div>
+                
+                <div class="progress-grid">
+                    <div class="progress-card">
+                        <div class="progress-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="progress-info">
+                            <h3 id="totalAulas">0</h3>
+                            <p>Aulas Assistidas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-card">
+                        <div class="progress-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="progress-info">
+                            <h3 id="totalQuestoes">0</h3>
+                            <p>Questões Respondidas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-card">
+                        <div class="progress-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="progress-info">
+                            <h3 id="taxaAcerto">0%</h3>
+                            <p>Taxa de Acerto</p>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-card">
+                        <div class="progress-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="progress-info">
+                            <h3 id="tempoEstudo">0h</h3>
+                            <p>Tempo de Estudo</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Seção de Propaganda/Recomendações -->
+            <section class="recommendations-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-star"></i> Recomendados para Você</h2>
+                    <p class="section-description">Cursos que podem potencializar sua preparação</p>
+                </div>
+                
+                <div class="recommendations-grid">
+                    <div class="recommendation-card">
+                        <div class="recommendation-icon enem">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>ENEM Intensivo</h3>
+                        <p>Preparação completa para o ENEM com foco nas competências exigidas</p>
+                        <a href="/pricing.html" class="btn btn-outline btn-sm">
+                            <i class="fas fa-plus"></i>
+                            <span>Adquirir</span>
+                        </a>
+                    </div>
+                    
+                    <div class="recommendation-card">
+                        <div class="recommendation-icon sis">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>SIS Avançado</h3>
+                        <p>Foco nas questões específicas do Sistema de Ingresso Seriado da UEA</p>
+                        <a href="/pricing.html" class="btn btn-outline btn-sm">
+                            <i class="fas fa-plus"></i>
+                            <span>Adquirir</span>
+                        </a>
+                    </div>
+                    
+                    <div class="recommendation-card">
+                        <div class="recommendation-icon psc">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h3>PSC Completo</h3>
+                        <p>Preparação para todas as etapas do Processo Seletivo Contínuo</p>
+                        <a href="/pricing.html" class="btn btn-outline btn-sm">
+                            <i class="fas fa-plus"></i>
+                            <span>Adquirir</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer IDÊNTICO ao index.html -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/index.html" class="logo light">
+                        <img src="https://i.ibb.co/jryH3q8/Min-Branca.png" class="logoimg">
+                        <div class="logo-text">
+                            <span class="logo-name">Método</span>
+                            <span class="logo-subtitle">Pré-Vestibular</span>
+                        </div>
+                    </a>
+                    <p>Transformando sonhos em aprovações. O cursinho que mais entende o vestibulando amazonense.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/metodo.prevest" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/metodo.prevest/" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.youtube.com/metodoprevestibular" aria-label="YouTube">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/559294860365" aria-label="WhatsApp">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="/sobre.html">Sobre Nós</a></li>
+                        <li><a href="/pricing.html">Matricule-se</a></li>
+                        <li><a href="/ranking.html">Ranking</a></li>
+                        <li><a href="/dashboard.html">Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Cursos</h4>
+                    <ul>
+                        <li><a href="/pricing.html">Turmas PSC</a></li>
+                        <li><a href="/pricing.html">Turmas SIS</a></li>
+                        <li><a href="/pricing.html">Turmas Macro</a></li>
+                        <li><a href="/pricing.html">Turmas ENEM</a></li>
+                        <li><a href="/pricing.html">Turmas PSI</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <span>R. Elisa Lispector, 213, bairro Tarumã<br>Manaus - AM</span>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            <span>(92) 99486-0365</span>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <span>metodoprevest@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Método Pré-Vestibular. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="auth.js"></script>
+    <script src="courses.js"></script>
+</body>
+</html>
