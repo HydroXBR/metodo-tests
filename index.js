@@ -108,7 +108,7 @@ app.get('/api/dashboard', async function (req, res) {
                         answer: q.answer,
                         correct: q.correct,
                         date: q.date,
-                        materia: getMateriaPorQuestao(q.answer) // Você já tem esta função
+                        materia: getMateriaPorQuestao(q.answer)
                     })),
                 aulasRecentes: foundUser.aulas
                     .sort((a, b) => a.date - b.date)
@@ -133,6 +133,214 @@ app.get('/api/dashboard', async function (req, res) {
             success: false,
             message: 'Erro ao carregar dashboard'
         });
+    }
+});
+
+app.post('/api/aula', async (req, res) => {
+    try {
+        const { userId, classId, course } = req.body;
+
+        const novaAula = {
+            classId: classId,
+            course: course,
+            date: new Date().getTime()
+        };
+
+        await user.findByIdAndUpdate(userId, {
+            $push: { aulas: novaAula }
+        });
+
+        res.json({
+            success: true,
+            message: 'Aula registrada com sucesso'
+        });
+
+    } catch (error) {
+        console.error('Erro ao registrar aula:', error);
+        res.json({ success: false, message: 'Erro ao registrar aula' });
+    }
+});
+
+app.post('/api/adicionar-curso', async (req, res) => {
+    try {
+        const { userId, curso } = req.body;
+
+        await user.findByIdAndUpdate(userId, {
+            $addToSet: { cursos: curso }
+        });
+
+        res.json({
+            success: true,
+            message: 'Curso adicionado com sucesso'
+        });
+
+    } catch (error) {
+        console.error('Erro ao adicionar curso:', error);
+        res.json({ success: false, message: 'Erro ao adicionar curso' });
+    }
+});
+
+app.get('/api/cursos-disponiveis', (req, res) => {
+    const cursos = [
+        { id: 'psc1', nome: 'PSC I', descricao: '1º Ano - Processo Seletivo Contínuo', preco: 'R$ 350/mês' },
+        { id: 'psc2', nome: 'PSC II', descricao: '2º Ano - Processo Seletivo Contínuo', preco: 'R$ 350/mês' },
+        { id: 'psc3', nome: 'PSC III', descricao: '3º Ano - Processo Seletivo Contínuo', preco: 'R$ 350/mês' },
+        { id: 'sis1', nome: 'SIS I', descricao: '1º Ano - Sistema de Ingresso Seriado', preco: 'R$ 350/mês' },
+        { id: 'sis2', nome: 'SIS II', descricao: '2º Ano - Sistema de Ingresso Seriado', preco: 'R$ 350/mês' },
+        { id: 'sis3', nome: 'SIS III', descricao: '3º Ano - Sistema de Ingresso Seriado', preco: 'R$ 350/mês' },
+        { id: 'enem', nome: 'ENEM/Macro', descricao: 'ENEM e vestibulares gerais', preco: 'R$ 400/mês' }
+    ];
+
+    res.json({ success: true, cursos: cursos });
+});
+
+app.get('/api/user-cursos', async (req, res) => {
+    try {
+        const { userId } = req.query;
+
+        if (!userId) {
+            return res.json({ success: false, message: 'ID do usuário necessário' });
+        }
+
+        const foundUser = await user.findById(userId).select('cursos');
+
+        if (!foundUser) {
+            return res.json({ success: false, message: 'Usuário não encontrado' });
+        }
+
+        res.json({
+            success: true,
+            cursos: foundUser.cursos || []
+        });
+
+    } catch (error) {
+        console.error('Erro ao obter cursos:', error);
+        res.json({ success: false, message: 'Erro ao carregar cursos' });
+    }
+});
+
+app.get('/api/course/:courseId', async (req, res) => {
+    try {
+        const { courseId } = req.params;
+
+        const course = await Course.findOne({ courseId });
+        if (!course) {
+            return res.json({ success: false, message: 'Curso não encontrado' });
+        }
+
+        const subjects = await Lesson.distinct('subject', { courseId });
+
+        const progress = await UserProgress.findOne({
+            userId: req.query.userId,
+            courseId
+        });
+
+        res.json({
+            success: true,
+            course: {
+                ...course._doc,
+                subjects: subjects.map(subject => ({
+                    id: subject,
+                    name: getSubjectName(subject),
+                    icon: getSubjectIcon(subject)
+                }))
+            },
+            progress: progress || {
+                completedLessons: [],
+                totalTime: 0,
+                streak: 0
+            }
+        });
+
+    } catch (error) {
+        console.error('Erro ao carregar curso:', error);
+        res.json({ success: false, message: 'Erro ao carregar curso' });
+    }
+});
+
+app.get('/api/course/:courseId/subject/:subject', async (req, res) => {
+    try {
+        const { courseId, subject } = req.params;
+
+        const lessons = await Lesson.find({
+            courseId,
+            subject
+        }).sort('order');
+
+        res.json({
+            success: true,
+            lessons: lessons.map(lesson => ({
+                id: lesson._id,
+                title: lesson.title,
+                description: lesson.description,
+                duration: lesson.duration,
+                professor: lesson.professor,
+                resources: lesson.resources,
+                videoUrl: lesson.videoUrl
+            }))
+        });
+
+    } catch (error) {
+        console.error('Erro ao carregar aulas:', error);
+        res.json({ success: false, message: 'Erro ao carregar aulas' });
+    }
+});
+
+app.post('/api/course/progress', async (req, res) => {
+    try {
+        const { userId, courseId, lessonId } = req.body;
+
+        await UserProgress.findOneAndUpdate(
+            { userId, courseId },
+            {
+                $addToSet: { completedLessons: lessonId },
+                $set: { lastAccessed: new Date() }
+            },
+            { upsert: true, new: true }
+        );
+
+        await user.findByIdAndUpdate(userId, {
+            $push: {
+                aulas: {
+                    classId: lessonId,
+                    course: courseId,
+                    date: new Date().getTime()
+                }
+            }
+        });
+
+        res.json({ success: true, message: 'Progresso atualizado' });
+
+    } catch (error) {
+        console.error('Erro ao atualizar progresso:', error);
+        res.json({ success: false, message: 'Erro ao atualizar progresso' });
+    }
+});
+
+app.post('/api/course/comment', async (req, res) => {
+    try {
+        const { userId, lessonId, comment } = req.body;
+
+        const user = await user.findById(userId);
+        if (!user) {
+            return res.json({ success: false, message: 'Usuário não encontrado' });
+        }
+
+        await Lesson.findByIdAndUpdate(lessonId, {
+            $push: {
+                comments: {
+                    authorId: userId,
+                    authorName: user.completename,
+                    comment: comment
+                }
+            }
+        });
+
+        res.json({ success: true, message: 'Comentário adicionado' });
+
+    } catch (error) {
+        console.error('Erro ao adicionar comentário:', error);
+        res.json({ success: false, message: 'Erro ao adicionar comentário' });
     }
 });
 
@@ -197,3 +405,81 @@ app.get('/api/adicionar-curso', async function (req, res) {
     }
 });
 
+app.get('/api/admin/courses', async (req, res) => {
+    try {
+        const courses = await Course.find({})
+            .sort({ createdAt: -1 });
+
+        res.json({
+            success: true,
+            courses: courses.map(course => ({
+                courseId: course.courseId,
+                title: course.title,
+                description: course.description,
+                type: course.type,
+                professors: course.professors || [],
+                totalLessons: course.totalLessons || 0,
+                totalHours: course.totalHours || 0,
+                enrolledStudents: course.enrolledStudents || 0,
+                rating: course.rating || 0,
+                createdAt: course.createdAt
+            }))
+        });
+
+    } catch (error) {
+        console.error('Erro ao listar cursos:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Erro ao listar cursos'
+        });
+    }
+});
+
+app.get('/api/admin/course/:courseId/detail', isAdmin, async (req, res) => {
+    try {
+        const { courseId } = req.params;
+
+        const course = await Course.findOne({ courseId });
+        if (!course) {
+            return res.json({ success: false, message: 'Curso não encontrado' });
+        }
+
+        const lessons = await Lesson.find({ courseId });
+        const progress = await UserProgress.find({ courseId });
+
+        res.json({
+            success: true,
+            course,
+            lessons,
+            enrolledStudents: progress.length,
+            averageProgress: progress.length > 0 ?
+                progress.reduce((acc, p) => acc + (p.completedLessons.length || 0), 0) / (lessons.length * progress.length) : 0
+        });
+
+    } catch (error) {
+        res.json({ success: false, message: 'Erro ao carregar detalhes' });
+    }
+});
+
+// DELETE - Excluir curso
+app.delete('/api/admin/course/:courseId', isAdmin, async (req, res) => {
+    try {
+        const { courseId } = req.params;
+
+        const progress = await UserProgress.findOne({ courseId });
+        if (progress) {
+            return res.json({
+                success: false,
+                message: 'Não é possível excluir curso com alunos inscritos'
+            });
+        }
+
+        await Course.findOneAndDelete({ courseId });
+        await Lesson.deleteMany({ courseId });
+
+        res.json({ success: true, message: 'Curso excluído com sucesso' });
+
+    } catch (error) {
+        res.json({ success: false, message: 'Erro ao excluir curso' });
+    }
+});
