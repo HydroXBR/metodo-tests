@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Método | Meus Cursos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="platform.css">
+  <link rel="stylesheet" href="courses.css">
+  <link rel="icon" href="https://i.ibb.co/jryH3q8/Min-Branca.png">
+</head>
+<body>
+
+<header>
+  <nav class="platform-nav" id="platformNav">
+    <div class="nav-inner">
+      <a href="/index.html" class="nav-logo">
+        <img src="https://i.ibb.co/jryH3q8/Min-Branca.png" alt="">
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Método</span>
+          <span class="nav-logo-sub">Pré-Vestibular</span>
+        </div>
+      </a>
+
+      <div class="nav-divider"></div>
+
+      <ul class="nav-links" role="list">
+        <li><a href="/dashboard.html"   class="nav-link"><i class="fas fa-home"></i> Dashboard</a></li>
+        <li><a href="/courses.html"     class="nav-link active"><i class="fas fa-play-circle"></i> Cursos</a></li>
+        <li><a href="/questions.html"   class="nav-link"><i class="fas fa-brain"></i> Questões</a></li>
+        <li><a href="/exams.html"       class="nav-link"><i class="fas fa-file-alt"></i> Banco de Provas</a></li>
+        <li><a href="/ranking.html"     class="nav-link"><i class="fas fa-trophy"></i> Ranking</a></li>
+        <li><a href="/calculadora.html" class="nav-link"><i class="fas fa-calculator"></i> Calculadora</a></li>
+        <li><a href="/redacao.html"     class="nav-link"><i class="fas fa-pen-nib"></i> Redação</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <div class="nav-profile" id="navProfile">
+          <button class="nav-profile-btn" id="navProfileBtn" aria-haspopup="true" aria-expanded="false">
+            <img src="" alt="Avatar" class="nav-avatar" id="userAvatar">
+            <span class="nav-profile-name" id="userName">Aluno</span>
+            <i class="fas fa-chevron-down nav-profile-chevron"></i>
+          </button>
+          <div class="nav-profile-dropdown" role="menu">
+            <div class="nav-profile-header">
+              <img src="" alt="" id="dropAvatar">
+              <div class="nav-profile-header-info">
+                <div class="name" id="dropUserName">Estudante</div>
+                <div class="email" id="dropUserEmail">—</div>
+              </div>
+            </div>
+            <a href="/profile.html" class="nav-dropdown-item"><i class="fas fa-user"></i> Meu Perfil</a>
+            <a href="/dashboard.html" class="nav-dropdown-item"><i class="fas fa-chart-bar"></i> Dashboard</a>
+            <button class="nav-dropdown-item danger" id="logoutBtn">
+              <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+          </div>
+        </div>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="nav-mobile-drawer" id="navDrawer">
+      <a href="/dashboard.html"   class="nav-link"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="/courses.html"     class="nav-link active"><i class="fas fa-play-circle"></i> Cursos</a>
+      <a href="/questions.html"   class="nav-link"><i class="fas fa-brain"></i> Questões</a>
+      <a href="/exams.html"       class="nav-link"><i class="fas fa-file-alt"></i> Banco de Provas</a>
+      <a href="/ranking.html"     class="nav-link"><i class="fas fa-trophy"></i> Ranking</a>
+      <a href="/calculadora.html" class="nav-link"><i class="fas fa-calculator"></i> Calculadora</a>
+      <a href="/redacao.html"     class="nav-link"><i class="fas fa-pen-nib"></i> Redação</a>
+      <div class="nav-divider-h"></div>
+      <a href="/profile.html"     class="nav-link"><i class="fas fa-user"></i> Perfil</a>
+      <button class="nav-link" id="logoutBtnMobile"
+        style="background:none;border:none;cursor:pointer;color:var(--g3);text-align:left;width:100%">
+        <i class="fas fa-sign-out-alt"></i> Sair
+      </button>
+    </div>
+  </nav>
+</header>
+
+<section class="courses-hero">
+  <div class="hero-vignette-bottom"></div>
+  <div class="container">
+    <div class="courses-hero-content">
+      <div class="courses-hero-info">
+        <div class="hero-badge">
+          <i class="fas fa-graduation-cap"></i>
+          Meus Cursos
+        </div>
+        <h1 class="hero-title">
+          Sua
+          <span class="accent">jornada</span>
+          de aprendizado
+        </h1>
+        <p class="hero-desc">
+          Acesse todos os cursos que você adquiriu e continue sua preparação rumo à aprovação nos vestibulares regionais. Com o Método, você tem o suporte dos melhores professores da região.
+        </p>
+      </div>
+
+      <div class="courses-promo">
+        <div class="promo-image">
+          <img src="https://i.ibb.co/ccKn7RbW/IMG-0112.jpg" alt="Professores do Método">
+          <div class="promo-overlay">
+            <h3><i class="fas fa-chalkboard-user"></i> Corpo Docente</h3>
+            <p>Os melhores professores preparados para sua aprovação</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<main class="courses-main">
+  <div class="container">
+
+    <section class="courses-section">
+      <div class="section-eyebrow">Seus Cursos</div>
+      <h2 class="section-title">Meus Cursos Ativos</h2>
+      <p class="section-sub">Continue de onde parou ou explore novos conteúdos</p>
+
+      <div class="courses-grid" id="coursesGrid">
+        <div class="loading-spinner"></div>
+      </div>
+
+      <div class="empty-state" id="noCourses" style="display:none">
+        <div class="empty-icon"><i class="fas fa-book-open"></i></div>
+        <h3>Nenhum curso adquirido</h3>
+        <p>Você ainda não tem cursos ativos em sua conta.</p>
+        <a href="/pricing.html" class="btn-accent">
+          <i class="fas fa-rocket"></i> Começar Agora
+        </a>
+      </div>
+    </section>
+
+    <section class="progress-section">
+      <div class="section-eyebrow">Sua Evolução</div>
+      <h2 class="section-title">Progresso Geral</h2>
+      <p class="section-sub">Acompanhe sua evolução em cada área</p>
+
+      <div class="progress-grid">
+        <div class="progress-card">
+          <div class="progress-icon"><i class="fas fa-play-circle"></i></div>
+          <div class="progress-info">
+            <h3 id="totalAulas">0</h3>
+            <p>Aulas Assistidas</p>
+          </div>
+        </div>
+        <div class="progress-card">
+          <div class="progress-icon"><i class="fas fa-check-circle"></i></div>
+          <div class="progress-info">
+            <h3 id="totalQuestoes">0</h3>
+            <p>Questões Respondidas</p>
+          </div>
+        </div>
+        <div class="progress-card">
+          <div class="progress-icon"><i class="fas fa-percentage"></i></div>
+          <div class="progress-info">
+            <h3 id="taxaAcerto">0%</h3>
+            <p>Taxa de Acerto</p>
+          </div>
+        </div>
+        <div class="progress-card">
+          <div class="progress-icon"><i class="fas fa-clock"></i></div>
+          <div class="progress-info">
+            <h3 id="tempoEstudo">0h</h3>
+            <p>Tempo de Estudo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="recommendations-section">
+      <div class="section-eyebrow">Recomendados</div>
+      <h2 class="section-title">Para Você</h2>
+      <p class="section-sub">Cursos que podem potencializar sua preparação</p>
+
+      <div class="recommendations-grid">
+        <div class="recommendation-card">
+          <div class="recommendation-icon enem"><i class="fas fa-star"></i></div>
+          <h3>ENEM Intensivo</h3>
+          <p>Preparação completa para o ENEM com foco nas competências exigidas</p>
+          <a href="/pricing.html" class="btn-outline">
+            <i class="fas fa-plus"></i> Adquirir
+          </a>
+        </div>
+        <div class="recommendation-card">
+          <div class="recommendation-icon sis"><i class="fas fa-graduation-cap"></i></div>
+          <h3>SIS Avançado</h3>
+          <p>Foco nas questões específicas do Sistema de Ingresso Seriado da UEA</p>
+          <a href="/pricing.html" class="btn-outline">
+            <i class="fas fa-plus"></i> Adquirir
+          </a>
+        </div>
+        <div class="recommendation-card">
+          <div class="recommendation-icon psc"><i class="fas fa-university"></i></div>
+          <h3>PSC Completo</h3>
+          <p>Preparação para todas as etapas do Processo Seletivo Contínuo</p>
+          <a href="/pricing.html" class="btn-outline">
+            <i class="fas fa-plus"></i> Adquirir
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="platform-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="https://i.ibb.co/jryH3q8/Min-Branca.png" alt="">
+          <div>
+            <div class="footer-logo-name">Método</div>
+            <div class="footer-logo-sub">Pré-Vestibular</div>
+          </div>
+        </div>
+        <p>Transformando sonhos em aprovações. O cursinho que mais entende o vestibulando amazonense.</p>
+        <div class="footer-socials">
+          <a href="https://instagram.com/metodo.prevest" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/metodo.prevest/" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.youtube.com/metodoprevestibular" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://wa.me/559294860365" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Links Rápidos</h5>
+        <ul>
+          <li><a href="/dashboard.html">Dashboard</a></li>
+          <li><a href="/courses.html">Cursos</a></li>
+          <li><a href="/questions.html">Questões</a></li>
+          <li><a href="/ranking.html">Ranking</a></li>
+          <li><a href="/calculadora.html">Calculadora</a></li>
+          <li><a href="/redacao.html">Redação</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Cursos</h5>
+        <ul>
+          <li><a href="/pricing.html">Turmas PSC</a></li>
+          <li><a href="/pricing.html">Turmas SIS</a></li>
+          <li><a href="/pricing.html">Turmas Macro</a></li>
+          <li><a href="/pricing.html">Turmas ENEM</a></li>
+          <li><a href="/pricing.html">Turmas PSI</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contato</h5>
+        <ul>
+          <li class="contact-item"><i class="fas fa-map-marker-alt"></i><span>R. Elisa Lispector, 213, Tarumã – Manaus, AM</span></li>
+          <li class="contact-item"><i class="fas fa-phone"></i><span>(92) 99486-0365</span></li>
+          <li class="contact-item"><i class="fas fa-envelope"></i><span>metodoprevest@gmail.com</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Método Pré-Vestibular. Todos os direitos reservados.</p>
+      <div class="footer-badge">Feito com <span>♥</span> em Manaus, AM</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const profileEl  = document.getElementById('navProfile');
+  const profileBtn = document.getElementById('navProfileBtn');
+  const hamburger  = document.getElementById('navHamburger');
+  const drawer     = document.getElementById('navDrawer');
+
+  profileBtn?.addEventListener('click', e => {
+    e.stopPropagation();
+    profileEl.classList.toggle('open');
+    profileBtn.setAttribute('aria-expanded', profileEl.classList.contains('open'));
+  });
+  document.addEventListener('click', () => profileEl?.classList.remove('open'));
+
+  hamburger?.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    drawer.classList.toggle('open');
+  });
+
+  const raw = localStorage.getItem('user');
+  if (raw) {
+    try {
+      const u = JSON.parse(raw);
+      const name   = (u.name || u.completename || 'Aluno').split(' ')[0];
+      const email  = u.email || '';
+      const avatar = u.profilePicture || '';
+      const dropName = document.getElementById('dropUserName');
+      if (dropName) dropName.textContent = name;
+      const dropEmail = document.getElementById('dropUserEmail');
+      if (dropEmail) dropEmail.textContent = email;
+      const dropAvatar = document.getElementById('dropAvatar');
+      if (dropAvatar && avatar) dropAvatar.src = avatar;
+    } catch(e) {}
+  }
+
+  document.getElementById('logoutBtnMobile')?.addEventListener('click', () => {
+    localStorage.clear();
+    window.location.href = '/login.html';
+  });
+})();
+</script>
+
+<script src="auth.js"></script>
+<script src="courses.js"></script>
+</body>
+</html>
